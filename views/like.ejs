@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  </head>
+  <style>
+    *{
+      padding:0;
+      margin:0;
+      box-sizing:border-box;
+    }
+    
+    body{
+      width:100vw;
+      position:relative;
+      overflow-x: hidden;
+      font-family: almarena;
+    }
+    
+    #main{
+      width:100vw;
+      height:150vh;
+      background-color: black;
+    }
+    
+    
+    .cover{
+     width:100%;
+     height:100%;
+     background-color: rgba(0, 0, 0, 0.763);
+    }
+    
+    
+    .textdiv{
+      width:fit-content;
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top:48%;
+      left:45%;
+    }
+    
+    .textdiv h1{
+      font-size: 5vw;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+      -webkit-text-stroke-width: 0.02px;
+      -webkit-text-stroke-color: white;
+    }
+    
+    .textdiv h3{
+      font-size: 2.3vw;
+      font-weight: 800;
+      color:white;
+    }
+    
+    .btndiv{
+      display :flex;
+      position: absolute;
+      justify-content: space-between;
+      width:23vw;
+      top:70%;
+      left:45%;
+    }
+    
+    .btndiv button{
+      width:11vw;
+      height:6vh;
+      border: none;
+      display: flex;
+      align-items: center;
+      font-size: 1.7vw;
+      font-family: gilroy;
+      justify-content: center;
+      
+    }
+    
+    a{
+      text-decoration: none;
+    }
+    
+    #btn1{
+      background-color: #50A584;
+      color: white;
+    }
+    
+    #btn2{
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    #trackdiv{
+        padding-top:5vw;
+      width:100vw;
+      min-height:100vh;
+      /* background-color: #50A584; */
+    }
+    
+
+    
+    .heading{
+      font-size: 4vw;
+      width:100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-bottom: 5vw;
+    }
+    
+    #audiodiv{
+      width:90vw;
+      height:8vh;
+      background-color:black;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      color: white;
+      margin-bottom: 2vw;
+    }
+    
+    #audiodiv h2{
+      font-size: 1.8vw;
+      font-weight: lighter;
+      font-family: gilroy;
+    }
+    
+    .custom-audio {
+      width: 55%;
+      background-color: black;
+    }
+    
+    .custom-audio::-webkit-media-controls-timeline {
+      width: 100%;
+      height: 5px;
+      margin: 10px 0;
+      color: white;
+    }
+    
+    audio::-webkit-media-controls-panel {
+      background-color:#50A584;
+      color:white;
+    }
+    
+    .custom-audio::-webkit-media-controls-current-time-display {
+      order: 1;
+      color: black;
+    }
+    
+    .custom-audio::-webkit-media-controls-time-remaining-display {
+      order: 2;
+      color: black;
+    }
+    
+    audio::-webkit-media-controls-volume-slider {
+      width: 100px;
+      height: 5px;
+      margin-top: 10px;
+    }
+    
+    #navbar{
+      background-color: transparent;
+      width:100%;
+      position: fixed;
+      height:10vh;
+      color:white;
+      z-index: 99999999999999999999999999999;
+      padding:2vw;
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .buttondiv{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap:8px;
+    }
+    
+    .buttondiv button{
+      width:11vw;
+      height:6vh;
+      border: none;
+      display: flex;
+      align-items: center;
+      font-size: 1.5vw;
+      font-family: gilroy;
+      justify-content: center;
+      background-color:#50A584;
+      color:white;
+      border-radius: 50px;
+     
+    }
+    
+    
+      </style>
+  <body>
+
+    <div id="main">
+        <div id="navbar" class="nav">
+            <h1>ACOUSTIC</h1>
+            <div class="buttondiv">
+              <a href="/tracks"><button></i>Track List</button></a>
+              <a href="/logout"><button><i class="ri-logout-circle-r-line"></i>Logout</button></a>
+             
+            </div>
+             </div>
+
+             <div id="trackdiv">
+                <div class="heading">
+                    <h1>Liked Songs</h1>
+                  </div>
+
+                  <div class="container">
+                    <% let songNumber = 1 %>
+                    <% likedSongs.forEach(function(songId) { %>
+                      <div id="audiodiv">
+                          <h2><%= songNumber %>. <%= songId.name %></h2>
+                          <audio controls class="custom-audio">
+                            <source src="/like/<%= songId._id %>" type="audio/mp3">
+                          </audio>
+                          <h2> by : <%= songId.artist %></h2>
+                        </div>
+                        <% songNumber++ %>
+                    <% }); %> 
+                  </div>
+             </div>
+    </div>
+    <!-- <h1>Liked Songs</h1>
+  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script>
+        const heart = document.getElementById('heart');
+        heart.addEventListener('click', async () => {
+          const songId = heart.getAttribute('data-id');
+          const response = await fetch(`/liked-songs/${songId}`);
+          const songData = await response.json();
+          const audio = new Audio(songData.streamUrl);
+          audio.play();
+        });
+      </script>
+      
+  </body>
+</html>

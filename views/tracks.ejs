@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Acoustic</title>
+  </head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+}
+
+body{
+  width:100vw;
+  position:relative;
+  overflow-x: hidden;
+  font-family: almarena;
+  background-color: black;
+}
+
+#main{
+  width:100vw;
+  height:350vh;
+  background-color: black;
+}
+
+.centerimg{
+  background-image: url("https://cdx.monstercat.com/resized/8a169d846576fcdad7a0a6e04d371eb05b2a9397/600.webp");
+  background-size: cover;
+  background-position: center;
+  width:100%;
+  height:100vh;
+  position: relative;
+
+}
+
+.cover{
+ width:100%;
+ height:100%;
+ background-color: rgba(0, 0, 0, 0.763);
+}
+
+.centerdiv{
+  width:30vw;
+  height:65vh;
+  background-image: url("https://cdx.monstercat.com/resized/8a169d846576fcdad7a0a6e04d371eb05b2a9397/600.webp");
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  top:25%;
+  margin-left: 10vw;
+}
+
+.textdiv{
+  width:fit-content;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top:48%;
+  left:45%;
+}
+
+.textdiv h1{
+  font-size: 5vw;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 0.02px;
+  -webkit-text-stroke-color: white;
+}
+
+.textdiv h3{
+  font-size: 2.3vw;
+  font-weight: 800;
+  color:white;
+}
+
+.btndiv{
+  display :flex;
+  position: absolute;
+  justify-content: space-between;
+  width:23vw;
+  top:70%;
+  left:45%;
+}
+
+.btndiv button{
+  width:11vw;
+  height:6vh;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 1.7vw;
+  font-family: gilroy;
+  justify-content: center;
+  
+}
+
+a{
+  text-decoration: none;
+}
+
+#btn1{
+  background-color: #50A584;
+  color: white;
+}
+
+#btn2{
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+#trackdiv{
+  width:100vw;
+  min-height:200vh;
+  /* background-color: #50A584; */
+}
+
+
+.heading{
+  font-size: 4vw;
+  width:100vw;
+  display: flex;
+  align-items: center;
+  padding-left: 10vw;
+  margin-top: 5vw;
+  color: white;
+}
+
+#audiodiv{
+  width:90vw;
+  height:8vh;
+  background-color:black;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  margin-bottom: 2vw;
+}
+
+#audiodiv h2{
+  font-size: 1.8vw;
+  font-weight: lighter;
+  font-family: gilroy;
+}
+
+.custom-audio {
+  width: 55%;
+  background-color: black;
+}
+
+.custom-audio::-webkit-media-controls-timeline {
+  width: 100%;
+  height: 5px;
+  margin: 20px 0;
+  color: white;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color:#50A584;
+  color:white;
+}
+
+.custom-audio::-webkit-media-controls-current-time-display {
+  order: 1;
+  color: black;
+}
+
+.custom-audio::-webkit-media-controls-time-remaining-display {
+  order: 2;
+  color: black;
+}
+
+audio::-webkit-media-controls-volume-slider {
+  width: 100px;
+  height: 5px;
+  margin-top: 10px;
+}
+
+#navbar{
+  background-color: transparent;
+  width:100%;
+  position: fixed;
+  height:10vh;
+  color:white;
+  z-index: 99999999999999999999999999999;
+  padding:2vw;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttondiv{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap:8px;
+}
+
+.buttondiv button{
+  width:11vw;
+  height:6vh;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 1.5vw;
+  font-family: gilroy;
+  justify-content: center;
+  background-color:#50A584;
+  color:white;
+  border-radius: 50px;
+ 
+}
+
+
+  </style>
+  <body>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Upload Music</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="/music-upload" enctype="multipart/form-data">
+              <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name" required>
+              </div>
+              <div>
+                <label for="name">Artist:</label>
+                <input type="text" name="artist" required>
+              </div>
+              <div>
+                <label for="file">Audio file:</label>
+                <input type="file" name="file" accept="audio/mp3" required>
+              </div>
+              <button type="submit">Upload</button>
+            </form> 
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<div id="main">
+
+ <div id="navbar" class="nav">
+<h1>ACOUSTIC</h1>
+<div class="buttondiv">
+  <a href="/like"><button></i>Liked Songs</button></a>
+  <a href="/logout"><button><i class="ri-logout-circle-r-line"></i>Logout</button></a>
+  <a href=""><button><i class="ri-user-line"></i><%= user.username%></button></a>
+ 
+</div>
+ </div>
+
+ <div class="centerimg">
+<div class="cover">
+  <div class="centerdiv">
+  </div>
+  <div class="textdiv">
+   <h1>ACOUSTIC</h1>
+   <h3>Stream Music</h3>
+  </div>
+ 
+  <div class="btndiv">
+       <button id="btn1"><i class="ri-play-line"></i>Listen</button>
+    <button id="btn2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-upload-cloud-line"></i>Upload</button>
+  </div>
+</div>
+ </div>
+
+ <div id="trackdiv">
+  <div class="heading">
+    <h1>TRACK LIST</h1>
+  </div>
+
+ <div class="conatiner" style="margin-left: 5vw; margin-top: 5vw;">
+  <% let songNumber = 1 %>
+  <% music.forEach((song) => { %>
+    <div id="audiodiv">
+      <h2><%= songNumber %>. <%= song.name %></h2>
+      <audio controls class="custom-audio">
+        <source src="/tracks/<%= song._id %>/audio" type="audio/mp3">
+      </audio>
+      <h2> by : <%= song.artist %></h2>
+      <form action="/like/<%= song._id %>" method="post">
+        <% if (user && user.liked_songs && user.liked_songs.includes(song._id)) { %>
+          <button type="submit" class="btn btn-success"><i class="fas fa-heart"></i> Liked</button>
+        <% } else { %>
+          <button type="submit" class="btn btn-outline-success"><i class="far fa-heart"></i> Like</button>
+        <% } %>
+      </form>
+    </div>
+    <% songNumber++ %>
+  <% }) %>
+</div> 
+
+
+ </div>
+ 
+  
+</div>
+    
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
